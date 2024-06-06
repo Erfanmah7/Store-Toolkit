@@ -67,7 +67,7 @@ function ProductsPage() {
             <li>Electronics</li>
             <li>Jewelery</li>
             <li>Men's Clothing</li>
-            <li>Woman's Clothing</li>
+            <li>Women's Clothing</li>
           </ul>
         </div>
       </div>
