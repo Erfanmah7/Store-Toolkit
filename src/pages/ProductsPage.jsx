@@ -16,11 +16,19 @@ function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    const query = {};
+    const search = searchParams.get("search");
+    const category = searchParams.get("category");
+    if (search) query.search = search;
+    if (category) query.category = category;
+
+    setQuery(query);
     setDisplayed(products);
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
+    setSearch(query.search || "");
     let finalFilter = filterSearch(products, query.search);
     finalFilter = filterCategory(finalFilter, query.category);
     setDisplayed(finalFilter);
