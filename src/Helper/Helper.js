@@ -19,4 +19,20 @@ const filterCategory = (products, category) => {
   return getCategory;
 };
 
-export { shortText, filterSearch, filterCategory };
+const getQuery = (query, newQuery) => {
+  if (newQuery.search === "") {
+    const { search, ...reset } = query;
+    return reset;
+  }
+  if (newQuery.category === "all") {
+    const { category, ...reset } = query;
+    return reset;
+  }
+
+  return {
+    ...query,
+    ...newQuery,
+  };
+};
+
+export { shortText, filterSearch, filterCategory, getQuery };

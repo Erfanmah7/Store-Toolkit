@@ -5,33 +5,36 @@ import Loader from "../components/Loader";
 import { ImSearch } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
-import { filterCategory, filterSearch } from "../Helper/Helper";
+import { filterCategory, filterSearch, getQuery } from "../Helper/Helper";
+import { useSearchParams } from "react-router-dom";
 
 function ProductsPage() {
   const products = useProducts();
   const [search, setSearch] = useState("");
   const [displayed, setDisplayed] = useState([]);
   const [query, setQuery] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setDisplayed(products);
   }, [products]);
 
   useEffect(() => {
+    setSearchParams(query);
     let finalFilter = filterSearch(products, query.search);
     finalFilter = filterCategory(finalFilter, query.category);
     setDisplayed(finalFilter);
   }, [query]);
 
   const searchHandler = () => {
-    setQuery((query) => ({ ...query, search }));
+    setQuery((query) => getQuery(query, { search }));
   };
 
   const categoriHandler = (e) => {
     const { tagName } = e.target;
     if (tagName !== "LI") return;
     const category = e.target.innerText.toLowerCase();
-    setQuery((query) => ({ ...query, category }));
+    setQuery((query) => getQuery(query, { category }));
   };
 
   return (
