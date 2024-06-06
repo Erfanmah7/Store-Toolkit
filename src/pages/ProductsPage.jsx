@@ -3,22 +3,35 @@ import { useProducts } from "../context/ProductsContext";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
 import { ImSearch } from "react-icons/im";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
+import { filterCategory, filterSearch } from "../Helper/Helper";
 
 function ProductsPage() {
   const products = useProducts();
   const [search, setSearch] = useState("");
-  console.log(products);
+  const [displayed, setDisplayed] = useState([]);
+  const [query, setQuery] = useState({});
+
+  useEffect(() => {
+    setDisplayed(products);
+  }, [products]);
+
+  useEffect(() => {
+    let finalFilter = filterSearch(products, query.search);
+    finalFilter = filterCategory(finalFilter, query.category);
+    setDisplayed(finalFilter);
+  }, [query]);
 
   const searchHandler = () => {
-    console.log("search");
+    setQuery((query) => ({ ...query, search }));
   };
 
   const categoriHandler = (e) => {
     const { tagName } = e.target;
     if (tagName !== "LI") return;
     const category = e.target.innerText.toLowerCase();
+    setQuery((query) => ({ ...query, category }));
   };
 
   return (
@@ -36,8 +49,8 @@ function ProductsPage() {
       </div>
       <div className={styles.container}>
         <div className={styles.products}>
-          {!products.length && <Loader />}
-          {products.map((p) => (
+          {!displayed.length && <Loader />}
+          {displayed.map((p) => (
             <Card key={p.id} data={p} />
           ))}
         </div>
