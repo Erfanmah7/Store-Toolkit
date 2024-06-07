@@ -3,10 +3,16 @@ import React from "react";
 import { TbListDetails, TbShoppingBagCheck } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { shortText } from "../Helper/Helper";
+import { useCart } from "../context/CartContext";
 
 function Card({ data }) {
   const { id, title, image, price } = data;
-  console.log(title);
+
+  const [state, dipatch] = useCart();
+
+  const clickHandler = () => {
+    dipatch({ type: "Add", payload: data });
+  };
 
   return (
     <div className={styles.card}>
@@ -18,7 +24,7 @@ function Card({ data }) {
           <TbListDetails />
         </Link>
         <div>
-          <button>
+          <button onClick={clickHandler}>
             <TbShoppingBagCheck />
           </button>
         </div>
