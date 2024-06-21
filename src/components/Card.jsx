@@ -9,9 +9,10 @@ function Card({ data }) {
   const { id, title, image, price } = data;
 
   const [state, dipatch] = useCart();
+  console.log(state);
 
   const clickHandler = () => {
-    dipatch({ type: "Add", payload: data });
+    dipatch({ type: "ADD", payload: data });
   };
 
   return (
