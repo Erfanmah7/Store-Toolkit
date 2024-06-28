@@ -18,7 +18,6 @@ const reduce = (state, action) => {
       if (!state.selectItems.find((item) => item.id === action.payload.id)) {
         state.selectItems.push({ ...action.payload, quantity: 1 });
       }
-
       return {
         ...state,
         ...sumProducts(state.selectItems),

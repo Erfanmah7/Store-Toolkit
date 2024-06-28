@@ -50,4 +50,20 @@ const sumProducts = (products) => {
   };
 };
 
-export { shortText, filterSearch, filterCategory, getQuery, sumProducts };
+const newquantity = (state, id) => {
+  const index = state.selectItems.findIndex((item) => item.id === id);
+  if (index === -1) {
+    return 0;
+  } else {
+    return state.selectItems[index].quantity;
+  }
+};
+
+export {
+  shortText,
+  filterSearch,
+  filterCategory,
+  getQuery,
+  sumProducts,
+  newquantity,
+};
