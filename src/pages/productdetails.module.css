@@ -31,9 +31,10 @@
 
 .description {
   color: gray;
-  width: 500px;
+  width: inherit;
   font-size: 1.1rem;
   margin-bottom: 40px;
+  text-align: justify;
 }
 
 .category {
