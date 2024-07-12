@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
-// import { useProductsDetails } from "../context/ProductsContext";
 import { shortText } from "../Helper/Helper";
 import { SiOpenproject } from "react-icons/si";
 import { IoMdPricetag } from "react-icons/io";
@@ -20,7 +19,6 @@ function ProductDetails() {
     store.product.products.find((i) => i.id === +id)
   );
   const dispatch = useDispatch();
-  console.log(productsDetails);
 
   if (!productsDetails) return <Loader />;
 
