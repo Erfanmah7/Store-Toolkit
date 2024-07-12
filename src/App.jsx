@@ -3,15 +3,11 @@ import ProductsPage from "./pages/ProductsPage";
 import PageNotFound from "./pages/PageNotFound";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
-import ProductsContext from "./context/ProductsContext";
-import CartContext from "./context/CartContext";
 import Layout from "./layout/Layout";
 
 function App() {
   return (
     <>
-      <CartContext>
-        <ProductsContext>
           <BrowserRouter>
             <Layout>
               <Routes>
@@ -23,8 +19,6 @@ function App() {
               </Routes>
             </Layout>
           </BrowserRouter>
-        </ProductsContext>
-      </CartContext>
     </>
   );
 }

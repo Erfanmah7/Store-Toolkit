@@ -3,19 +3,15 @@ import React from "react";
 import { TbListDetails, TbShoppingBagCheck } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { newquantity, shortText } from "../Helper/Helper";
-import { useCart } from "../context/CartContext";
 import { MdDeleteOutline } from "react-icons/md";
 
 function Card({ data }) {
   const { id, title, image, price } = data;
 
-  const [state, dipatch] = useCart();
-  console.log(state);
-
-  const quantity = newquantity(state, id);
+  const quantity = 0;
 
   const clickHandler = (type) => {
-    dipatch({ type, payload: data });
+    // dipatch({ type, payload: data });
   };
 
   return (
